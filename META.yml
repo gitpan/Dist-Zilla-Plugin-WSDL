@@ -3,13 +3,17 @@ abstract: 'WSDL to Perl classes when building your dist'
 author:
   - 'Mark Gardner <mjgardner@cpan.org>'
 build_requires:
+  Cwd: 0
+  Dist::Zilla::Tester: 4.101550
   File::Find: 0
   File::Temp: 0
+  Test::Moose: 0
   Test::More: 0
+  Test::Most: 0
 configure_requires:
   ExtUtils::MakeMaker: 6.31
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 4.102221, CPAN::Meta::Converter version 2.102160'
+generated_by: 'Dist::Zilla version 4.102340, CPAN::Meta::Converter version 2.102160'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -19,15 +23,15 @@ requires:
   Dist::Zilla::Role::FileGatherer: 0
   Dist::Zilla::Role::Tempdir: 0
   English: 0
-  IPC::System::Simple: 0
+  LWP::UserAgent: 0
   Modern::Perl: 0
   Moose: 0
   MooseX::Types: 0
   MooseX::Types::Moose: 0
-  MooseX::Types::Path::Class: 0
   MooseX::Types::URI: 0
   Regexp::DefaultFlags: 0
-  SOAP::WSDL: 2.00.05
+  SOAP::WSDL::Expat::WSDLParser: 0
+  SOAP::WSDL::Factory::Generator: 0
   perl: 5.010
   utf8: 0
-version: 0.102370
+version: 0.102390
