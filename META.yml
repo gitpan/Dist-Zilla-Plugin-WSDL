@@ -13,7 +13,7 @@ build_requires:
 configure_requires:
   ExtUtils::MakeMaker: 6.31
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 4.102340, CPAN::Meta::Converter version 2.102160'
+generated_by: 'Dist::Zilla version 4.102340, CPAN::Meta::Converter version 2.102400'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -26,12 +26,17 @@ requires:
   LWP::UserAgent: 0
   Modern::Perl: 0
   Moose: 0
+  MooseX::Has::Sugar: 0
   MooseX::Types: 0
   MooseX::Types::Moose: 0
   MooseX::Types::URI: 0
+  Path::Class: 0
   Regexp::DefaultFlags: 0
   SOAP::WSDL::Expat::WSDLParser: 0
   SOAP::WSDL::Factory::Generator: 0
   perl: 5.010
   utf8: 0
-version: 0.102390
+resources:
+  homepage: http://github.com/mjg/Dist-Zilla-Plugin-WSDL/tree
+  repository: git://github.com/mjg/Dist-Zilla-Plugin-WSDL.git
+version: 0.102420

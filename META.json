@@ -4,7 +4,7 @@
       "Mark Gardner <mjgardner@cpan.org>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 4.102340, CPAN::Meta::Converter version 2.102160",
+   "generated_by" : "Dist::Zilla version 4.102340, CPAN::Meta::Converter version 2.102400",
    "license" : [
       "perl_5"
    ],
@@ -27,9 +27,11 @@
             "LWP::UserAgent" : 0,
             "Modern::Perl" : 0,
             "Moose" : 0,
+            "MooseX::Has::Sugar" : 0,
             "MooseX::Types" : 0,
             "MooseX::Types::Moose" : 0,
             "MooseX::Types::URI" : 0,
+            "Path::Class" : 0,
             "Regexp::DefaultFlags" : 0,
             "SOAP::WSDL::Expat::WSDLParser" : 0,
             "SOAP::WSDL::Factory::Generator" : 0,
@@ -50,6 +52,14 @@
       }
    },
    "release_status" : "stable",
-   "version" : "0.102390"
+   "resources" : {
+      "homepage" : "http://github.com/mjg/Dist-Zilla-Plugin-WSDL/tree",
+      "repository" : {
+         "type" : "git",
+         "url" : "git://github.com/mjg/Dist-Zilla-Plugin-WSDL.git",
+         "web" : "http://github.com/mjg/Dist-Zilla-Plugin-WSDL/tree"
+      }
+   },
+   "version" : "0.102420"
 }
 

@@ -14,7 +14,7 @@ use warnings;    ## no critic (RequireExplicitPackage)
 package Dist::Zilla::Plugin::WSDL::Types;
 
 BEGIN {
-    $Dist::Zilla::Plugin::WSDL::Types::VERSION = '0.102390';
+    $Dist::Zilla::Plugin::WSDL::Types::VERSION = '0.102420';
 }
 
 # ABSTRACT: Subtypes for Dist::Zilla::Plugin::WSDL
@@ -27,13 +27,7 @@ use MooseX::Types::Moose 'Str';
 use MooseX::Types -declare => ['ClassPrefix'];
 ## no critic (Subroutines::ProhibitCallsToUndeclaredSubs)
 
-subtype ClassPrefix, as Str, where {
-    $ARG =~ m{\A
-        (?: \w+ )                   # top of name hierarchy
-        (?: (?: :: ) (?: \w+ ) )*   # possibly more levels down
-        (?: :: )?                   # possibly followed by ::
-    };
-};
+subtype ClassPrefix, as Str, where {/\A \w+ (?: :: \w+ )* (?: :: )? \z/};
 
 1;
 
@@ -45,7 +39,7 @@ Dist::Zilla::Plugin::WSDL::Types - Subtypes for Dist::Zilla::Plugin::WSDL
 
 =head1 VERSION
 
-version 0.102390
+version 0.102420
 
 =head1 DESCRIPTION
 
