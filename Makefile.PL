@@ -2,7 +2,7 @@
 use strict;
 use warnings;
 
-BEGIN { require 5.010; }
+BEGIN { require 5.008_008; }
 
 use ExtUtils::MakeMaker 6.31;
 
@@ -16,6 +16,7 @@ my %WriteMakefileArgs = (
     'Dist::Zilla::Tester' => '4.101550',
     'File::Find' => '0',
     'File::Temp' => '0',
+    'Modern::Perl' => '0',
     'Test::Moose' => '0',
     'Test::More' => '0',
     'Test::Most' => '0'
@@ -32,7 +33,6 @@ my %WriteMakefileArgs = (
     'Dist::Zilla::Role::Tempdir' => '0',
     'English' => '0',
     'LWP::UserAgent' => '0',
-    'Modern::Perl' => '0',
     'Moose' => '0',
     'MooseX::Has::Sugar' => '0',
     'MooseX::Types' => '0',
@@ -44,7 +44,7 @@ my %WriteMakefileArgs = (
     'SOAP::WSDL::Factory::Generator' => '0',
     'utf8' => '0'
   },
-  'VERSION' => '0.102420',
+  'VERSION' => '0.102440',
   'test' => {
     'TESTS' => 't/*.t'
   }

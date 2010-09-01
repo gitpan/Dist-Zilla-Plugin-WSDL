@@ -6,20 +6,19 @@
 # This is free software; you can redistribute it and/or modify it under
 # the same terms as the Perl 5 programming language system itself.
 #
-use 5.010;       ## no critic (RequireExplicitPackage)
-use utf8;        ## no critic (RequireExplicitPackage)
-use strict;      ## no critic (RequireExplicitPackage)
-use warnings;    ## no critic (RequireExplicitPackage)
+use 5.008_008;    ## no critic (RequireExplicitPackage)
+use utf8;         ## no critic (RequireExplicitPackage)
+use strict;       ## no critic (RequireExplicitPackage)
+use warnings;     ## no critic (RequireExplicitPackage)
 
 package Dist::Zilla::Plugin::WSDL::Types;
 
 BEGIN {
-    $Dist::Zilla::Plugin::WSDL::Types::VERSION = '0.102420';
+    $Dist::Zilla::Plugin::WSDL::Types::VERSION = '0.102440';
 }
 
 # ABSTRACT: Subtypes for Dist::Zilla::Plugin::WSDL
 
-use Modern::Perl;
 use English '-no_match_vars';
 use Regexp::DefaultFlags;
 use Moose;
@@ -39,14 +38,12 @@ Dist::Zilla::Plugin::WSDL::Types - Subtypes for Dist::Zilla::Plugin::WSDL
 
 =head1 VERSION
 
-version 0.102420
+version 0.102440
 
 =head1 DESCRIPTION
 
 This is a L<Moose|Moose> subtype library for
 L<Dist::Zilla::Plugin::WSDL|Dist::Zilla::Plugin::WSDL>.
-
-=encoding utf8
 
 =head1 TYPES
 

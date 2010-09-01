@@ -6,20 +6,19 @@
 # This is free software; you can redistribute it and/or modify it under
 # the same terms as the Perl 5 programming language system itself.
 #
-use 5.010;       ## no critic (RequireExplicitPackage)
-use utf8;        ## no critic (RequireExplicitPackage)
-use strict;      ## no critic (RequireExplicitPackage)
-use warnings;    ## no critic (RequireExplicitPackage)
+use 5.008_008;    ## no critic (RequireExplicitPackage)
+use utf8;         ## no critic (RequireExplicitPackage)
+use strict;       ## no critic (RequireExplicitPackage)
+use warnings;     ## no critic (RequireExplicitPackage)
 
 package Dist::Zilla::Plugin::WSDL;
 
 BEGIN {
-    $Dist::Zilla::Plugin::WSDL::VERSION = '0.102420';
+    $Dist::Zilla::Plugin::WSDL::VERSION = '0.102440';
 }
 
 # ABSTRACT: WSDL to Perl classes when building your dist
 
-use Modern::Perl;
 use English '-no_match_vars';
 use LWP::UserAgent;
 use Moose;
@@ -155,7 +154,7 @@ Dist::Zilla::Plugin::WSDL - WSDL to Perl classes when building your dist
 
 =head1 VERSION
 
-version 0.102420
+version 0.102440
 
 =head1 DESCRIPTION
 
@@ -197,8 +196,6 @@ Defaults to false.
 
 Instructs L<SOAP::WSDL|SOAP::WSDL> to generate Perl classes for the provided
 WSDL and gathers them into the C<lib> directory of your distribution.
-
-=encoding utf8
 
 =for Pod::Coverage mvp_multivalue_args
 

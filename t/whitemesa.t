@@ -7,13 +7,10 @@
 # This is free software; you can redistribute it and/or modify it under
 # the same terms as the Perl 5 programming language system itself.
 #
-use 5.010;       ## no critic (RequireExplicitPackage)
-use utf8;        ## no critic (RequireExplicitPackage)
-use strict;      ## no critic (RequireExplicitPackage)
-use warnings;    ## no critic (RequireExplicitPackage)
-
-=encoding utf8
-=cut
+use 5.008_008;    ## no critic (RequireExplicitPackage)
+use utf8;         ## no critic (RequireExplicitPackage)
+use strict;       ## no critic (RequireExplicitPackage)
+use warnings;     ## no critic (RequireExplicitPackage)
 
 use Cwd;
 use Dist::Zilla::Tester 4.101550;

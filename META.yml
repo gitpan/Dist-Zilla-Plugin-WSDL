@@ -7,6 +7,7 @@ build_requires:
   Dist::Zilla::Tester: 4.101550
   File::Find: 0
   File::Temp: 0
+  Modern::Perl: 0
   Test::Moose: 0
   Test::More: 0
   Test::Most: 0
@@ -24,7 +25,6 @@ requires:
   Dist::Zilla::Role::Tempdir: 0
   English: 0
   LWP::UserAgent: 0
-  Modern::Perl: 0
   Moose: 0
   MooseX::Has::Sugar: 0
   MooseX::Types: 0
@@ -34,9 +34,9 @@ requires:
   Regexp::DefaultFlags: 0
   SOAP::WSDL::Expat::WSDLParser: 0
   SOAP::WSDL::Factory::Generator: 0
-  perl: 5.010
+  perl: 5.008_008
   utf8: 0
 resources:
   homepage: http://github.com/mjg/Dist-Zilla-Plugin-WSDL/tree
   repository: git://github.com/mjg/Dist-Zilla-Plugin-WSDL.git
-version: 0.102420
+version: 0.102440
