@@ -14,7 +14,7 @@ use warnings;     ## no critic (RequireExplicitPackage)
 package Dist::Zilla::Plugin::WSDL::Types;
 
 BEGIN {
-    $Dist::Zilla::Plugin::WSDL::Types::VERSION = '0.102440';
+    $Dist::Zilla::Plugin::WSDL::Types::VERSION = '0.102600';
 }
 
 # ABSTRACT: Subtypes for Dist::Zilla::Plugin::WSDL
@@ -25,6 +25,7 @@ use Moose;
 use MooseX::Types::Moose 'Str';
 use MooseX::Types -declare => ['ClassPrefix'];
 ## no critic (Subroutines::ProhibitCallsToUndeclaredSubs)
+## no critic (Tics::ProhibitLongLines)
 
 subtype ClassPrefix, as Str, where {/\A \w+ (?: :: \w+ )* (?: :: )? \z/};
 
@@ -38,7 +39,7 @@ Dist::Zilla::Plugin::WSDL::Types - Subtypes for Dist::Zilla::Plugin::WSDL
 
 =head1 VERSION
 
-version 0.102440
+version 0.102600
 
 =head1 DESCRIPTION
 
@@ -51,6 +52,30 @@ L<Dist::Zilla::Plugin::WSDL|Dist::Zilla::Plugin::WSDL>.
 
 A string subtype for Perl class names C<Like::This> or class prefix names
 C<Like::This::>.
+
+=head1 INSTALLATION
+
+See perlmodinstall for information and options on installing Perl modules.
+
+=head1 BUGS AND LIMITATIONS
+
+No bugs have been reported.
+
+Please report any bugs or feature requests through the web interface at
+L<http://rt.cpan.org>.
+
+=head1 AVAILABILITY
+
+The project homepage is L<http://github.com/mjg/Dist-Zilla-Plugin-WSDL/tree>.
+
+The latest version of this module is available from the Comprehensive Perl
+Archive Network (CPAN). Visit L<http://www.perl.com/CPAN/> to find a CPAN
+site near you, or see L<http://search.cpan.org/dist/Dist-Zilla-Plugin-WSDL/>.
+
+The development version lives at L<http://github.com/mjg/Dist-Zilla-Plugin-WSDL.git>
+and may be cloned from L<git://github.com/mjg/Dist-Zilla-Plugin-WSDL.git>.
+Instead of sending patches, please fork this project using the standard
+git and github infrastructure.
 
 =head1 AUTHOR
 

@@ -14,12 +14,14 @@ use warnings;     ## no critic (RequireExplicitPackage)
 package Dist::Zilla::Plugin::WSDL;
 
 BEGIN {
-    $Dist::Zilla::Plugin::WSDL::VERSION = '0.102440';
+    $Dist::Zilla::Plugin::WSDL::VERSION = '0.102600';
 }
 
 # ABSTRACT: WSDL to Perl classes when building your dist
 
+use autodie;
 use English '-no_match_vars';
+use File::Copy 'copy';
 use LWP::UserAgent;
 use Moose;
 use MooseX::Has::Sugar;
@@ -31,7 +33,7 @@ use SOAP::WSDL::Expat::WSDLParser;
 use SOAP::WSDL::Factory::Generator;
 use Dist::Zilla::Plugin::WSDL::Types qw(ClassPrefix);
 with 'Dist::Zilla::Role::Tempdir';
-with 'Dist::Zilla::Role::FileGatherer';
+with 'Dist::Zilla::Role::BeforeBuild';
 
 has uri => ( ro, required, coerce, isa => Uri );
 
@@ -125,7 +127,7 @@ has generate_server => (
     default => 0,
 );
 
-sub gather_files {
+sub before_build {
     my $self = shift;
 
     my (@generated_files) = $self->capture_tempdir(
@@ -137,9 +139,18 @@ sub gather_files {
         }
     );
 
-    for ( grep { $ARG->is_new() } @generated_files ) {
-        $ARG->file->name( file( 'lib', $ARG->file->name() )->stringify() );
-        $self->add_file( $ARG->file() );
+    for my $file (
+        map  { $ARG->file() }
+        grep { $ARG->is_new() } @generated_files
+        )
+    {
+        $file->name( file( 'lib', $file->name() )->stringify() );
+        $self->log( 'Saving ' . $file->name() );
+        my $file_path = $self->zilla->root->file( $file->name() );
+        $file_path->dir->mkpath();
+        my $fh = $file_path->openw();
+        print $fh $file->content();
+        close $fh;
     }
     return;
 }
@@ -154,7 +165,7 @@ Dist::Zilla::Plugin::WSDL - WSDL to Perl classes when building your dist
 
 =head1 VERSION
 
-version 0.102440
+version 0.102600
 
 =head1 DESCRIPTION
 
@@ -192,12 +203,36 @@ Defaults to false.
 
 =head1 METHODS
 
-=head2 gather_files
+=head2 before_build
 
 Instructs L<SOAP::WSDL|SOAP::WSDL> to generate Perl classes for the provided
 WSDL and gathers them into the C<lib> directory of your distribution.
 
 =for Pod::Coverage mvp_multivalue_args
+
+=head1 INSTALLATION
+
+See perlmodinstall for information and options on installing Perl modules.
+
+=head1 BUGS AND LIMITATIONS
+
+No bugs have been reported.
+
+Please report any bugs or feature requests through the web interface at
+L<http://rt.cpan.org>.
+
+=head1 AVAILABILITY
+
+The project homepage is L<http://github.com/mjg/Dist-Zilla-Plugin-WSDL/tree>.
+
+The latest version of this module is available from the Comprehensive Perl
+Archive Network (CPAN). Visit L<http://www.perl.com/CPAN/> to find a CPAN
+site near you, or see L<http://search.cpan.org/dist/Dist-Zilla-Plugin-WSDL/>.
+
+The development version lives at L<http://github.com/mjg/Dist-Zilla-Plugin-WSDL.git>
+and may be cloned from L<git://github.com/mjg/Dist-Zilla-Plugin-WSDL.git>.
+Instead of sending patches, please fork this project using the standard
+git and github infrastructure.
 
 =head1 AUTHOR
 

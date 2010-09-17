@@ -21,9 +21,10 @@
       },
       "runtime" : {
          "requires" : {
-            "Dist::Zilla::Role::FileGatherer" : 0,
+            "Dist::Zilla::Role::BeforeBuild" : 0,
             "Dist::Zilla::Role::Tempdir" : 0,
             "English" : 0,
+            "File::Copy" : 0,
             "LWP::UserAgent" : 0,
             "Moose" : 0,
             "MooseX::Has::Sugar" : 0,
@@ -34,6 +35,7 @@
             "Regexp::DefaultFlags" : 0,
             "SOAP::WSDL::Expat::WSDLParser" : 0,
             "SOAP::WSDL::Factory::Generator" : 0,
+            "autodie" : 0,
             "perl" : "5.008_008",
             "utf8" : 0
          }
@@ -44,7 +46,6 @@
             "Dist::Zilla::Tester" : "4.101550",
             "File::Find" : 0,
             "File::Temp" : 0,
-            "Modern::Perl" : 0,
             "Test::Moose" : 0,
             "Test::More" : 0,
             "Test::Most" : 0
@@ -53,6 +54,9 @@
    },
    "release_status" : "stable",
    "resources" : {
+      "bugtracker" : {
+         "web" : "http://github.com/mjg/Dist-Zilla-Plugin-WSDL/issues"
+      },
       "homepage" : "http://github.com/mjg/Dist-Zilla-Plugin-WSDL/tree",
       "repository" : {
          "type" : "git",
@@ -60,6 +64,6 @@
          "web" : "http://github.com/mjg/Dist-Zilla-Plugin-WSDL/tree"
       }
    },
-   "version" : "0.102440"
+   "version" : "0.102600"
 }
 
