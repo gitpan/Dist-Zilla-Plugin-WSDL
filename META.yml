@@ -3,17 +3,19 @@ abstract: 'WSDL to Perl classes when building your dist'
 author:
   - 'Mark Gardner <mjgardner@cpan.org>'
 build_requires:
+  Carp: 0
   Cwd: 0
   Dist::Zilla::Tester: 4.101550
   File::Find: 0
   File::Temp: 0
+  Scalar::Util: 0
   Test::Moose: 0
-  Test::More: 0
+  Test::More: 0.94
   Test::Most: 0
 configure_requires:
-  ExtUtils::MakeMaker: 6.31
+  ExtUtils::MakeMaker: 6.30
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 4.102340, CPAN::Meta::Converter version 2.102400'
+generated_by: 'Dist::Zilla version 4.200006, CPAN::Meta::Converter version 2.110930'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -34,11 +36,12 @@ requires:
   Regexp::DefaultFlags: 0
   SOAP::WSDL::Expat::WSDLParser: 0
   SOAP::WSDL::Factory::Generator: 0
+  Tree::DAG_Node: 1.06
   autodie: 0
-  perl: 5.008_008
+  perl: 5.008_08
   utf8: 0
 resources:
-  bugtracker: http://github.com/mjg/Dist-Zilla-Plugin-WSDL/issues
-  homepage: http://github.com/mjg/Dist-Zilla-Plugin-WSDL/tree
-  repository: git://github.com/mjg/Dist-Zilla-Plugin-WSDL.git
-version: 0.102600
+  bugtracker: https://github.com/mjgardner/Dist-Zilla-Plugin-WSDL/issues
+  homepage: http://search.cpan.org/dist/Dist-Zilla-Plugin-WSDL/
+  repository: git://github.com/mjgardner/Dist-Zilla-Plugin-WSDL.git
+version: 0.200

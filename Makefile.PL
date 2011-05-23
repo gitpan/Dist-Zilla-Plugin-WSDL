@@ -2,9 +2,9 @@
 use strict;
 use warnings;
 
-BEGIN { require 5.008_008; }
+BEGIN { require 5.008_08; }
 
-use ExtUtils::MakeMaker 6.31;
+use ExtUtils::MakeMaker 6.30;
 
 
 
@@ -12,16 +12,18 @@ my %WriteMakefileArgs = (
   'ABSTRACT' => 'WSDL to Perl classes when building your dist',
   'AUTHOR' => 'Mark Gardner <mjgardner@cpan.org>',
   'BUILD_REQUIRES' => {
+    'Carp' => '0',
     'Cwd' => '0',
     'Dist::Zilla::Tester' => '4.101550',
     'File::Find' => '0',
     'File::Temp' => '0',
+    'Scalar::Util' => '0',
     'Test::Moose' => '0',
-    'Test::More' => '0',
+    'Test::More' => '0.94',
     'Test::Most' => '0'
   },
   'CONFIGURE_REQUIRES' => {
-    'ExtUtils::MakeMaker' => '6.31'
+    'ExtUtils::MakeMaker' => '6.30'
   },
   'DISTNAME' => 'Dist-Zilla-Plugin-WSDL',
   'EXE_FILES' => [],
@@ -42,10 +44,11 @@ my %WriteMakefileArgs = (
     'Regexp::DefaultFlags' => '0',
     'SOAP::WSDL::Expat::WSDLParser' => '0',
     'SOAP::WSDL::Factory::Generator' => '0',
+    'Tree::DAG_Node' => '1.06',
     'autodie' => '0',
     'utf8' => '0'
   },
-  'VERSION' => '0.102600',
+  'VERSION' => '0.200',
   'test' => {
     'TESTS' => 't/*.t'
   }

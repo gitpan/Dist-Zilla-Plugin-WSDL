@@ -22,7 +22,7 @@ BEGIN {
 
 use Test::More;
 
-eval "use Test::Pod 1.41";
-plan skip_all => "Test::Pod 1.41 required for testing POD" if $@;
-
-all_pod_files_ok();
+eval "use Test::Vars";
+plan skip_all => "Test::Vars required for testing unused vars"
+    if $@;
+all_vars_ok();

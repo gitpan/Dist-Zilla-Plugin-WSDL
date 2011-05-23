@@ -2,20 +2,21 @@
 #
 # This file is part of Dist-Zilla-Plugin-WSDL
 #
-# This software is copyright (c) 2010 by Mark Gardner.
+# This software is copyright (c) 2011 by GSI Commerce.
 #
 # This is free software; you can redistribute it and/or modify it under
 # the same terms as the Perl 5 programming language system itself.
 #
-use 5.008_008;    ## no critic (RequireExplicitPackage)
-use utf8;         ## no critic (RequireExplicitPackage)
-use strict;       ## no critic (RequireExplicitPackage)
-use warnings;     ## no critic (RequireExplicitPackage)
+use 5.008_008;
+use strict;
+use warnings;
+use utf8;
 
 use strict;
 use warnings;
 
 use Test::More;
+
 use File::Find;
 use File::Temp qw{ tempdir };
 
@@ -34,7 +35,19 @@ find(
     'lib',
 );
 
-my @scripts = glob "bin/*";
+my @scripts;
+if ( -d 'bin' ) {
+    find(
+        sub {
+            return unless -f;
+            my $found = $File::Find::name;
+
+            # nothing to skip
+            push @scripts, $found;
+        },
+        'bin',
+    );
+}
 
 my $plan = scalar(@modules) + scalar(@scripts);
 $plan ? ( plan tests => $plan ) : ( plan skip_all => "no tests to run" );
