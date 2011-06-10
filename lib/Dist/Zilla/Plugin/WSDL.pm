@@ -14,7 +14,7 @@ use utf8;
 package Dist::Zilla::Plugin::WSDL;
 
 BEGIN {
-    $Dist::Zilla::Plugin::WSDL::VERSION = '0.200';
+    $Dist::Zilla::Plugin::WSDL::VERSION = '0.201';
 }
 
 # ABSTRACT: WSDL to Perl classes when building your dist
@@ -70,20 +70,19 @@ has prefix => (
 
 sub mvp_multivalue_args { return 'typemap' }
 
-has _typemap_lines => (
-    ro, lazy,
+has _typemap_lines => ( ro,
+    isa => ArrayRef [Str],
     traits   => ['Array'],
-    isa      => ArrayRef [Str],
     init_arg => 'typemap',
     handles  => { _typemap_array => 'elements' },
     default  => sub { [] },
 );
 
-has _typemap => (
-    ro, lazy_build,
+has _typemap => ( ro, lazy_build,
     isa => HashRef [Str],
-    predicate => 'has_typemap',
-    init_arg  => undef,
+    traits   => ['Hash'],
+    init_arg => undef,
+    handles  => { _has__typemap => 'count' },
 );
 
 sub _build__typemap {    ## no critic (ProhibitUnusedPrivateSubroutines)
@@ -100,7 +99,7 @@ sub _build__generator {    ## no critic (ProhibitUnusedPrivateSubroutines)
 
     my $generator
         = SOAP::WSDL::Factory::Generator->get_generator( { type => 'XSD' } );
-    if ( $self->has_typemap() and $generator->can('set_typemap') ) {
+    if ( $self->_has__typemap and $generator->can('set_typemap') ) {
         $generator->set_typemap( $self->_typemap() );
     }
 
@@ -138,7 +137,7 @@ sub before_build {
             my $method = 'generate_'
                 . ( $self->generate_server ? 'server' : 'interface' );
             $self->_generator->$method;
-        }
+        },
     );
 
     for my $file (
@@ -170,7 +169,7 @@ Dist::Zilla::Plugin::WSDL - WSDL to Perl classes when building your dist
 
 =head1 VERSION
 
-version 0.200
+version 0.201
 
 =head1 DESCRIPTION
 

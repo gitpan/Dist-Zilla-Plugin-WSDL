@@ -4,7 +4,7 @@
       "Mark Gardner <mjgardner@cpan.org>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 4.200006, CPAN::Meta::Converter version 2.110930",
+   "generated_by" : "Dist::Zilla version 4.200007, CPAN::Meta::Converter version 2.110930",
    "license" : [
       "perl_5"
    ],
@@ -67,6 +67,6 @@
          "web" : "https://github.com/mjgardner/Dist-Zilla-Plugin-WSDL"
       }
    },
-   "version" : "0.200"
+   "version" : "0.201"
 }
 

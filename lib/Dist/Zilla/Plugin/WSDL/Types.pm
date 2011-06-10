@@ -14,7 +14,7 @@ use utf8;
 package Dist::Zilla::Plugin::WSDL::Types;
 
 BEGIN {
-    $Dist::Zilla::Plugin::WSDL::Types::VERSION = '0.200';
+    $Dist::Zilla::Plugin::WSDL::Types::VERSION = '0.201';
 }
 
 # ABSTRACT: Subtypes for Dist::Zilla::Plugin::WSDL
@@ -43,7 +43,7 @@ Dist::Zilla::Plugin::WSDL::Types - Subtypes for Dist::Zilla::Plugin::WSDL
 
 =head1 VERSION
 
-version 0.200
+version 0.201
 
 =head1 DESCRIPTION
 
