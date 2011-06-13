@@ -2,7 +2,7 @@ NAME
     Dist::Zilla::Plugin::WSDL - WSDL to Perl classes when building your dist
 
 VERSION
-    version 0.202
+    version 0.203
 
 DESCRIPTION
     This Dist::Zilla plugin will create classes in your distribution for
@@ -16,7 +16,15 @@ ATTRIBUTES
     generate Perl classes.
 
   prefix
-    String used to prefix generated classes. Default is "My".
+    String used to prefix generated class names. Default is "My", which will
+    result in classes under:
+
+    "MyAttributes::"
+    "MyElements::"
+    "MyInterfaces::"
+    "MyServer::"
+    "MyTypes::"
+    "MyTypemaps::"
 
   typemap
     A list of SOAP types and the classes that should be mapped to them.
@@ -36,6 +44,10 @@ METHODS
   before_build
     Instructs SOAP::WSDL to generate Perl classes for the provided WSDL and
     gathers them into the "lib" directory of your distribution.
+
+SEE ALSO
+    Dist::Zilla
+    SOAP::WSDL
 
 SUPPORT
   Perldoc

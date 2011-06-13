@@ -14,7 +14,7 @@ use utf8;
 package Dist::Zilla::Plugin::WSDL;
 
 BEGIN {
-    $Dist::Zilla::Plugin::WSDL::VERSION = '0.202';
+    $Dist::Zilla::Plugin::WSDL::VERSION = '0.203';
 }
 
 # ABSTRACT: WSDL to Perl classes when building your dist
@@ -100,9 +100,9 @@ sub _build__generator {    ## no critic (ProhibitUnusedPrivateSubroutines)
         qw(attribute type typemap element interface server);
     while ( my ( $prefix, $method ) = each %prefix_method ) {
         next if not $generator->can($method);
-        $generator->$method( $self->prefix()
+        $generator->$method( $self->prefix
                 . ucfirst($prefix)
-                . ( $prefix eq 'server' ? 's' : q{} ) );
+                . ( $prefix eq 'server' ? q{} : 's' ) );
     }
 
     my %attr_method
@@ -130,16 +130,18 @@ sub before_build {
     );
 
     for my $file (
-        map  { $ARG->file() }
+        map  { $ARG->file }
         grep { $ARG->is_new() } @generated_files
         )
     {
-        $file->name( file( 'lib', $file->name() )->stringify() );
-        $self->log( 'Saving ' . $file->name() );
-        my $file_path = $self->zilla->root->file( $file->name() );
+        $file->name( file( 'lib', $file->name )->stringify() );
+        $self->log( 'Saving ' . $file->name );
+        my $file_path = $self->zilla->root->file( $file->name );
         $file_path->dir->mkpath();
-        my $fh = $file_path->openw();
-        print {$fh} $file->content();
+        my $fh = $file_path->openw()
+            or $self->log_fatal(
+            "could not open $file_path for writing: $OS_ERROR");
+        print {$fh} $file->content;
         close $fh;
     }
     return;
@@ -160,7 +162,7 @@ Dist::Zilla::Plugin::WSDL - WSDL to Perl classes when building your dist
 
 =head1 VERSION
 
-version 0.202
+version 0.203
 
 =head1 DESCRIPTION
 
@@ -178,7 +180,24 @@ Perl classes.
 
 =head2 prefix
 
-String used to prefix generated classes.  Default is "My".
+String used to prefix generated class names.  Default is "My", which will result
+in classes under:
+
+=over
+
+=item C<MyAttributes::>
+
+=item C<MyElements::>
+
+=item C<MyInterfaces::>
+
+=item C<MyServer::>
+
+=item C<MyTypes::>
+
+=item C<MyTypemaps::>
+
+=back
 
 =head2 typemap
 
@@ -204,6 +223,16 @@ Instructs L<SOAP::WSDL|SOAP::WSDL> to generate Perl classes for the provided
 WSDL and gathers them into the C<lib> directory of your distribution.
 
 =for Pod::Coverage mvp_multivalue_args
+
+=head1 SEE ALSO
+
+=over
+
+=item L<Dist::Zilla|Dist::Zilla>
+
+=item L<SOAP::WSDL|SOAP::WSDL>
+
+=back
 
 =head1 SUPPORT
 

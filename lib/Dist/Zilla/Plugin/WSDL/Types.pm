@@ -14,7 +14,7 @@ use utf8;
 package Dist::Zilla::Plugin::WSDL::Types;
 
 BEGIN {
-    $Dist::Zilla::Plugin::WSDL::Types::VERSION = '0.202';
+    $Dist::Zilla::Plugin::WSDL::Types::VERSION = '0.203';
 }
 
 # ABSTRACT: Subtypes for Dist::Zilla::Plugin::WSDL
@@ -28,7 +28,12 @@ use MooseX::Types::Moose 'Str';
 use MooseX::Types -declare => ['ClassPrefix'];
 ## no critic (Subroutines::ProhibitCallsToUndeclaredSubs)
 
-subtype ClassPrefix, as Str, where {/\A \w+ (?: :: \w+ )* (?: :: )? \z/};
+subtype ClassPrefix, as Str, where {/\A \w+ (?: :: \w+ )* (?: :: )? \z/},
+    message {
+    <<'END_MESSAGE'};
+Class prefixes should only have alphanumeric or _ characters,
+separated and optionally ending with "::".
+END_MESSAGE
 
 1;
 
@@ -45,7 +50,7 @@ Dist::Zilla::Plugin::WSDL::Types - Subtypes for Dist::Zilla::Plugin::WSDL
 
 =head1 VERSION
 
-version 0.202
+version 0.203
 
 =head1 DESCRIPTION
 
