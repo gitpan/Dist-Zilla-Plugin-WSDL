@@ -44,4 +44,4 @@ resources:
   bugtracker: https://github.com/mjgardner/Dist-Zilla-Plugin-WSDL/issues
   homepage: http://search.cpan.org/dist/Dist-Zilla-Plugin-WSDL/
   repository: git://github.com/mjgardner/Dist-Zilla-Plugin-WSDL.git
-version: 0.201
+version: 0.202

@@ -14,7 +14,7 @@ use utf8;
 package Dist::Zilla::Plugin::WSDL::Types;
 
 BEGIN {
-    $Dist::Zilla::Plugin::WSDL::Types::VERSION = '0.201';
+    $Dist::Zilla::Plugin::WSDL::Types::VERSION = '0.202';
 }
 
 # ABSTRACT: Subtypes for Dist::Zilla::Plugin::WSDL
@@ -32,6 +32,8 @@ subtype ClassPrefix, as Str, where {/\A \w+ (?: :: \w+ )* (?: :: )? \z/};
 
 1;
 
+__END__
+
 =pod
 
 =for :stopwords Mark Gardner GSI Commerce cpan testmatrix url annocpan anno bugtracker rt
@@ -43,7 +45,7 @@ Dist::Zilla::Plugin::WSDL::Types - Subtypes for Dist::Zilla::Plugin::WSDL
 
 =head1 VERSION
 
-version 0.201
+version 0.202
 
 =head1 DESCRIPTION
 
@@ -158,5 +160,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
-__END__
