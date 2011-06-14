@@ -8,12 +8,12 @@ Makefile.PL
 README
 dist.ini
 lib/Dist/Zilla/Plugin/WSDL.pm
-lib/Dist/Zilla/Plugin/WSDL/Types.pm
 perlcritic.rc
 t/00-compile.t
 t/000-report-versions.t
 t/01-whitemesa.t
 t/02-typemap.t
+t/03-no_defs.t
 t/author-critic.t
 t/release-cpan-changes.t
 t/release-dist-manifest.t

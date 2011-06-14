@@ -14,7 +14,7 @@ use utf8;
 package Dist::Zilla::Plugin::WSDL;
 
 BEGIN {
-    $Dist::Zilla::Plugin::WSDL::VERSION = '0.203';
+    $Dist::Zilla::Plugin::WSDL::VERSION = '0.204';
 }
 
 # ABSTRACT: WSDL to Perl classes when building your dist
@@ -26,6 +26,7 @@ use LWP::UserAgent;
 use Moose;
 use MooseX::Has::Sugar;
 use MooseX::Types::Moose qw(ArrayRef Bool HashRef Str);
+use MooseX::Types::Perl 'ModuleName';
 use MooseX::Types::URI 'Uri';
 use Path::Class;
 use Regexp::DefaultFlags;
@@ -33,33 +34,41 @@ use Regexp::DefaultFlags;
 ## no critic (RequireLineBoundaryMatching)
 use SOAP::WSDL::Expat::WSDLParser;
 use SOAP::WSDL::Factory::Generator;
-use Dist::Zilla::Plugin::WSDL::Types qw(ClassPrefix);
+use Try::Tiny;
+use namespace::autoclean;
 with 'Dist::Zilla::Role::Tempdir';
 with 'Dist::Zilla::Role::BeforeBuild';
 
 has uri => ( ro, required, coerce, isa => Uri );
 
-has _definitions => ( ro, lazy_build, isa => 'SOAP::WSDL::Base' );
+has _definitions => ( ro, lazy_build, isa => 'SOAP::WSDL::Definitions' );
 
 sub _build__definitions {    ## no critic (ProhibitUnusedPrivateSubroutines)
     my $self = shift;
+    my $uri  = $self->uri;
 
     my $lwp = LWP::UserAgent->new();
     $lwp->env_proxy();
-
     my $parser = SOAP::WSDL::Expat::WSDLParser->new( { user_agent => $lwp } );
-    my $wsdl = $parser->parse_uri( $self->uri )
-        or $self->zilla->log_fatal('could not parse WSDL');
 
+    my $wsdl;
+    try { $wsdl = $parser->parse_uri( $self->uri ) }
+    catch { $self->log_fatal("could not parse $uri into WSDL: $ARG") };
     return $wsdl;
 }
 
 has _OUTPUT_PATH => ( ro, isa => Str, default => q{.} );
 
 has prefix => ( ro,
-    isa       => ClassPrefix,
-    predicate => 'has_prefix',
-    default   => 'My',
+    default => 'My',
+    isa     => Moose::Meta::TypeConstraint->new(
+        message =>
+            sub {'must be valid class name, optionally ending in "::"'},
+        constraint => sub {
+            $ARG =~ s/ :: \z//;
+            ModuleName->check($ARG);
+        },
+    ),
 );
 
 sub mvp_multivalue_args { return 'typemap' }
@@ -72,17 +81,14 @@ has _typemap_lines => ( ro,
     default  => sub { [] },
 );
 
-has _typemap => ( ro, lazy_build,
-    isa => HashRef [Str],
+has _typemap => ( ro, lazy,
+    isa => HashRef [ModuleName],
     traits  => ['Hash'],
     handles => { _has__typemap => 'count' },
+    default => sub {
+        return { map { split / \s* => \s* /, $ARG } $ARG[0]->_typemap_array };
+    },
 );
-
-sub _build__typemap {    ## no critic (ProhibitUnusedPrivateSubroutines)
-    my $self = shift;
-
-    return { map { +split / \s* => \s* /, $ARG } $self->_typemap_array };
-}
 
 has _generator =>
     ( ro, lazy_build, isa => 'SOAP::WSDL::Generator::Template::XSD' );
@@ -131,7 +137,7 @@ sub before_build {
 
     for my $file (
         map  { $ARG->file }
-        grep { $ARG->is_new() } @generated_files
+        grep { $ARG->is_new() } @generated_files,
         )
     {
         $file->name( file( 'lib', $file->name )->stringify() );
@@ -147,6 +153,7 @@ sub before_build {
     return;
 }
 
+__PACKAGE__->meta->make_immutable();
 1;
 
 __END__
@@ -162,7 +169,9 @@ Dist::Zilla::Plugin::WSDL - WSDL to Perl classes when building your dist
 
 =head1 VERSION
 
-version 0.203
+version 0.204
+
+=head1 SYNOPSIS
 
 =head1 DESCRIPTION
 
@@ -223,6 +232,15 @@ Instructs L<SOAP::WSDL|SOAP::WSDL> to generate Perl classes for the provided
 WSDL and gathers them into the C<lib> directory of your distribution.
 
 =for Pod::Coverage mvp_multivalue_args
+
+=for test_synopsis 1;
+__END__
+
+In your F<dist.ini>:
+
+    [WSDL]
+    uri = http://example.com/path/to/service.wsdl
+    prefix = My::Dist::Remote::
 
 =head1 SEE ALSO
 

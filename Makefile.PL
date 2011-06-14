@@ -37,18 +37,20 @@ my %WriteMakefileArgs = (
     'LWP::UserAgent' => '0',
     'Moose' => '0',
     'MooseX::Has::Sugar' => '0',
-    'MooseX::Types' => '0',
     'MooseX::Types::Moose' => '0',
+    'MooseX::Types::Perl' => '0',
     'MooseX::Types::URI' => '0',
     'Path::Class' => '0',
     'Regexp::DefaultFlags' => '0',
     'SOAP::WSDL::Expat::WSDLParser' => '0',
     'SOAP::WSDL::Factory::Generator' => '0',
     'Tree::DAG_Node' => '1.06',
+    'Try::Tiny' => '0',
     'autodie' => '0',
+    'namespace::autoclean' => '0',
     'utf8' => '0'
   },
-  'VERSION' => '0.203',
+  'VERSION' => '0.204',
   'test' => {
     'TESTS' => 't/*.t'
   }
