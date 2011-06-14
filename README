@@ -2,9 +2,15 @@ NAME
     Dist::Zilla::Plugin::WSDL - WSDL to Perl classes when building your dist
 
 VERSION
-    version 0.204
+    version 0.205
 
 SYNOPSIS
+    In your dist.ini:
+
+        [WSDL]
+        uri = http://example.com/path/to/service.wsdl
+        prefix = My::Dist::Remote::
+
 DESCRIPTION
     This Dist::Zilla plugin will create classes in your distribution for
     interacting with a web service based on that service's published WSDL
@@ -45,12 +51,6 @@ METHODS
   before_build
     Instructs SOAP::WSDL to generate Perl classes for the provided WSDL and
     gathers them into the "lib" directory of your distribution.
-
-    In your dist.ini:
-
-        [WSDL]
-        uri = http://example.com/path/to/service.wsdl
-        prefix = My::Dist::Remote::
 
 SEE ALSO
     Dist::Zilla
